@@ -1,4 +1,4 @@
-FROM postgres:9.6.5
+FROM postgres:10.0
 ARG VERSION=7.0.3
 LABEL maintainer="Citus Data https://citusdata.com" \
       org.label-schema.name="Citus" \
@@ -10,6 +10,9 @@ LABEL maintainer="Citus Data https://citusdata.com" \
       org.label-schema.schema-version="1.0"
 
 ENV CITUS_VERSION ${VERSION}.citus-1
+
+# fix bad GPG file which confuses apt on Debian Stretch
+RUN rm -f /etc/apt/trusted.gpg
 
 # install Citus
 RUN apt-get update \
