@@ -1,3 +1,29 @@
+### citus-docker v7.2.0.docker (January 17, 2018) ###
+
+* Bump Citus version to 7.2.0
+
+### citus-docker v7.1.2.docker (January 8, 2018) ###
+
+* Bump Citus version to 7.1.2
+
+### citus-docker v7.1.1-1.docker (December 5, 2017) ###
+
+* Bump Citus version to 7.1.1
+
+### citus-docker v7.1.0-1.docker (November 15, 2017) ###
+
+* Based on latest PostgreSQL 10.1 images and official Citus 7.1.0 package
+
+* Underlying PostgreSQL image now based on Debian Stretch (was Jessie)
+
+* Stats collection identifies host as Docker-based
+
+### citus-docker v7.1.0 (November 15, 2017) ###
+
+* Bump Citus version to 7.1.0
+
+* Anonymous stats collection can be disabled by setting the `DISABLE_STATS_COLLECTION` environment variable to any value when starting a Citus container
+
 ### citus-docker v7.0.3 (October 18, 2017) ###
 
 * Bump Citus version to 7.0.3

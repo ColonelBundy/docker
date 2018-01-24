@@ -1,5 +1,5 @@
-FROM postgres:9.6.5
-ARG VERSION=7.0.3
+FROM postgres:10.1
+ARG VERSION=7.2.0
 LABEL maintainer="Citus Data https://citusdata.com" \
       org.label-schema.name="Citus" \
       org.label-schema.description="Scalable PostgreSQL for multi-tenant and real-time workloads" \
@@ -26,7 +26,7 @@ RUN apt-get update \
        libprotobuf-c0-dev \
        postgresql-server-dev-9.6 \
     && curl -s https://install.citusdata.com/community/deb.sh | bash \
-    && apt-get install -y postgresql-$PG_MAJOR-citus-7.0=$CITUS_VERSION \
+    && apt-get install -y postgresql-$PG_MAJOR-citus-7.2=$CITUS_VERSION \
     && apt-get purge -y --auto-remove curl \
     && rm -rf /var/lib/apt/lists/*
 
@@ -40,7 +40,7 @@ RUN wget -qO- -O /tmp/tmp.zip https://github.com/citusdata/cstore_fdw/archive/v1
 RUN echo "shared_preload_libraries='citus,cstore_fdw'" >> /usr/share/postgresql/postgresql.conf.sample
 
 # add scripts to run after initdb
-COPY 000-create-citus-extension.sql /docker-entrypoint-initdb.d/
+COPY 000-configure-stats.sh 001-create-citus-extension.sql /docker-entrypoint-initdb.d/
 
 # add health check script
 COPY pg_healthcheck /
