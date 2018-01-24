@@ -1,2 +1,1 @@
 CREATE EXTENSION citus;
-CREATE EXTENSION cstore_fdw;
